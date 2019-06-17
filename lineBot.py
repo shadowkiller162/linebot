@@ -1,4 +1,5 @@
 import requests
+import random
 from bs4 import BeautifulSoup
 from flask import Flask, request, abort
 
@@ -48,13 +49,20 @@ def handle_message(event):
             if '/watch?v='in link.get('href'):
                 watch_list.append(link.get('href'))
         return_text = 'https://www.youtube.com'+watch_list[0]
-    # line_bot_api.reply_message(
-    #     event.reply_token,
-    #     TextSendMessage(text='This is your YouTube video.'))
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text=return_text))
 
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=return_text))
+    else:
+        answer_list = ['別逼我，機器人也是有尊嚴的！',
+                       '這天氣，我覺得我需要上個油...',
+                       '我只出生不到3小時，你不能要求我這麼多!',
+                       '聽說有個網站叫好時價(houseplus)不錯用喔',
+                       "I'm Robot..."
+                       ]
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text=random.choice(answer_list)))
 
 if __name__ == "__main__":
     app.run()
