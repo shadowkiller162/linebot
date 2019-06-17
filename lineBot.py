@@ -48,9 +48,9 @@ def handle_message(event):
             if '/watch?v='in link.get('href'):
                 watch_list.append(link.get('href'))
         return_text = 'https://www.youtube.com'+watch_list[0]
-    line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text='This is your YouTube video.'))
+    # line_bot_api.reply_message(
+    #     event.reply_token,
+    #     TextSendMessage(text='This is your YouTube video.'))
     line_bot_api.reply_message(
         event.reply_token,
         TextSendMessage(text=return_text))
